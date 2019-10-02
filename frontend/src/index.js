@@ -1,9 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import Router from './Router';
-import * as serviceWorker from './serviceWorker';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import './index.css'
+import Router from './Router'
+import * as serviceWorker from './serviceWorker'
+import 'antd/dist/antd.css'
+import MyProvider from './context'
 
-ReactDOM.render(<Router />, document.getElementById('root'));
+ReactDOM.render(
+  <MyProvider>
+    <Router />
+  </MyProvider>,
+  document.getElementById('root')
+)
 
-serviceWorker.unregister();
+serviceWorker.unregister()
