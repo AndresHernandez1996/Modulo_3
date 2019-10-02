@@ -3,10 +3,10 @@ import 'antd/dist/antd.css'
 import '../../index.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { NavLink } from 'react-router-dom'
-import HomeCard from './HomeCard'
+import Login from './Login'
 import Content from './Content'
 
-function Home() {
+function LoginPage() {
   return (
     <div>
       {/*COMIENZA NAVBAR  */}
@@ -34,12 +34,13 @@ function Home() {
               </a>
             </li>
           </ul>
-          <NavLink style={{ margin: '0 2%' }} exact to="/login">
+          <NavLink style={{ margin: '0 2%' }} exact to="/">
             <button
+              color="#ed5151"
               style={{ border: 'none', borderRadius: '50px', color: '#ed5151' }}
-              className="btn btn-light my-2 my-sm-0"
+              className="btn  btn-light my-2 my-sm-0"
               type="submit">
-              Login
+              Home
             </button>
           </NavLink>
           <NavLink exact to="signup">
@@ -54,7 +55,6 @@ function Home() {
         </div>
       </nav>
       {/*TERMINA NAVBAR  */}
-      {/*COMIENZA HEADER */}
       <section
         style={{
           display: 'flex',
@@ -65,16 +65,15 @@ function Home() {
         }}>
         <div>
           {/*Aqui va una tarjeta*/}
-          <HomeCard />
+          <Login />
         </div>
         <div>
           <img alt="h" src="./images/heart.svg" width="300vh" />
         </div>
       </section>
-      {/*TERMINA HEADER */}
       <Content />
     </div>
   )
 }
 
-export default Home
+export default LoginPage

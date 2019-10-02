@@ -2,11 +2,11 @@ import React from 'react'
 import 'antd/dist/antd.css'
 import '../../index.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import Signup from './Signup'
 import { NavLink } from 'react-router-dom'
-import HomeCard from './HomeCard'
-import Content from './Content'
+import Footer from './Footer'
 
-function Home() {
+function SignupPage() {
   return (
     <div>
       {/*COMIENZA NAVBAR  */}
@@ -30,51 +30,36 @@ function Home() {
           <ul className="navbar-nav mr-auto">
             <li className="nav-item active">
               <a style={{ color: 'white' }} className="nav-link" href="#">
-                About <span className="sr-only">(current)</span>
+                <span className="sr-only">(current)</span>
               </a>
             </li>
           </ul>
           <NavLink style={{ margin: '0 2%' }} exact to="/login">
             <button
-              style={{ border: 'none', borderRadius: '50px', color: '#ed5151' }}
+              style={{ border: 'none', margin: '0 2%', borderRadius: '50px', color: '#ed5151' }}
               className="btn btn-light my-2 my-sm-0"
               type="submit">
               Login
             </button>
           </NavLink>
-          <NavLink exact to="signup">
+          <NavLink exact to="/">
             <button
               color="#ed5151"
               style={{ border: 'none', borderRadius: '50px', color: '#ed5151' }}
               className="btn  btn-light my-2 my-sm-0"
               type="submit">
-              Signup
+              Home
             </button>
           </NavLink>
         </div>
       </nav>
-      {/*TERMINA NAVBAR  */}
-      {/*COMIENZA HEADER */}
-      <section
-        style={{
-          display: 'flex',
-          justifyContent: 'space-around',
-          margin: '5% 0 6% 0',
-          height: 520,
-          alignItems: 'center'
-        }}>
-        <div>
-          {/*Aqui va una tarjeta*/}
-          <HomeCard />
-        </div>
-        <div>
-          <img alt="h" src="./images/heart.svg" width="300vh" />
-        </div>
+      <section style={{ display: 'flex', justifyContent: 'center' }}>
+        <Signup />
       </section>
-      {/*TERMINA HEADER */}
-      <Content />
+      <Footer />
+      {/*TERMINA NAVBAR  */}
     </div>
   )
 }
 
-export default Home
+export default SignupPage
