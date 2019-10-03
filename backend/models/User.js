@@ -9,6 +9,10 @@ const userSchema = new Schema(
       type: String,
       enum: ['Male', 'Female', 'Other']
     },
+    role: {
+      type: String,
+      enum: ['Doctor', 'Patient']
+    },
     professionalId: String,
     medicalspeciality: String,
     university: String,
