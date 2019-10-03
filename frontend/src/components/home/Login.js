@@ -27,7 +27,7 @@ class Login extends Component {
     AUTH_SERVICE.login(this.state.user)
       .then(response => {
         this.context.logUser(response.data.user)
-        this.props.history.push('/profile')
+        this.props.history.push('/doctor-profile')
       })
       .catch(error => {
         console.log(error)
@@ -70,7 +70,7 @@ class Login extends Component {
                 Home
               </button>
             </NavLink>
-            <NavLink exact to="signup">
+            <NavLink exact to="/">
               <button
                 color="#ed5151"
                 style={{ border: 'none', borderRadius: '50px', color: '#ed5151' }}

@@ -1,27 +1,24 @@
 import React, { Component } from 'react'
 import { MyContext } from '../../context'
 import { NavLink } from 'react-router-dom'
-import { Menu, Icon, Layout, Card } from 'antd'
-import Footer from './Footer'
+import { Menu, Icon, Layout, Button } from 'antd'
+import Footer from '../home/Footer'
 const { Sider, Content } = Layout
 
-class PatientProfile extends Component {
+class RegisterConsult extends Component {
   handleClick = e => {
     console.log('click ', e)
   }
 
-  recentVisits = () => {
-    this.props.history.push('/patient-profile')
+  registerConsult = () => {
+    this.props.history.push('register-consult')
   }
 
-  createContact = () => {
-    this.props.history.push('/create-contact')
+  myPrescriptions = () => {
+    this.props.history.push('/doctor-prescriptions')
   }
-  contacts = () => {
-    this.props.history.push('/contacts')
-  }
-  qrCode = () => {
-    this.props.history.push('/qr-emergency')
+  doctorProfile = () => {
+    this.props.history.push('/doctor-profile')
   }
 
   render() {
@@ -72,21 +69,17 @@ class PatientProfile extends Component {
               style={{ border: '', width: '205px' }}
               defaultSelectedKeys={['1']}
               defaultOpenKeys={['sub1']}>
-              <Menu.Item onClick={this.recentVisits} key="1">
+              <Menu.Item onClick={this.registerConsult} key="1">
                 <Icon type="solution" />
-                Recent medical visits
+                Register medical consultation
               </Menu.Item>
-              <Menu.Item onClick={this.createContact} key="2">
-                <Icon type="user-add" />
-                Create contact
+              <Menu.Item onClick={this.myPrescriptions} key="3">
+                <Icon type="file-search" />
+                My prescriptions
               </Menu.Item>
-              <Menu.Item onClick={this.contacts} key="3">
-                <Icon type="team" />
-                Contacts
-              </Menu.Item>
-              <Menu.Item onClick={this.qrCode} key="5">
-                <Icon type="qrcode" />
-                QR Code
+              <Menu.Item onClick={this.doctorProfile} key="4">
+                <Icon type="user" />
+                Profile
               </Menu.Item>
             </Menu>
           </Sider>
@@ -102,10 +95,7 @@ class PatientProfile extends Component {
               <br />
               <br />
               <h1 style={{ textAlign: 'center' }}>Welcome Andrés Hernández</h1>
-              <p>
-                Manage your information and privacy and security options to make Google more
-                relevant to you.
-              </p>
+              <p>Here you can see the users registered in the app.</p>
               {/* CONTAINER CARDS */}
               <div
                 style={{
@@ -132,29 +122,36 @@ class PatientProfile extends Component {
                       textAlign: 'start'
                     }}>
                     <span style={{ fontSize: '11.3px' }}>
-                      <b>Doctor: </b>
+                      <b>Name: </b>
                     </span>
-                    <span>Enrique Ramirez</span>
+                    <span>Enrique </span>
                     <span style={{ fontSize: '11.3px' }}>
-                      <b>Hospital: </b>
+                      <b> Lastname: </b>
                     </span>
-                    <span>Angeles lomas</span>
+                    <span>Ramirez</span>
                     <span style={{ fontSize: '11.3px' }}>
-                      <b> Date:</b>
+                      <b> Email:</b>
                     </span>
-                    <span>30 / 09 / 2019</span>
+                    <span>zariel145@hotmail.com</span>
                     <span style={{ fontSize: '11.3px' }}>
-                      <b>Prescription: </b>
+                      <b>Age: </b>
                     </span>
-                    <span>Manage your information and privacy and security options t</span>
+                    <span>22</span>
                   </div>
                   <div style={{ margin: '5% 0' }}>
-                    <img src="/images/prescription.svg" width="70px" alt="" />
+                    <img src="/images/contact.svg" width="70px" alt="" />
                   </div>
                   <div style={{ textAlign: 'center' }}>
-                    <span style={{ fontSize: '11.3px' }} n>
-                      Ver detalle
-                    </span>
+                    <Button
+                      style={{
+                        backgroundColor: '#ed5151',
+                        margin: ' 0 0 10% 0',
+                        border: 'none',
+                        color: 'white',
+                        fontSize: '11.3px'
+                      }}>
+                      Create presciption
+                    </Button>
                   </div>
                 </div>
                 {/* CARD UNICA */}
@@ -169,6 +166,6 @@ class PatientProfile extends Component {
   }
 }
 
-PatientProfile.contextType = MyContext
+RegisterConsult.contextType = MyContext
 
-export default PatientProfile
+export default RegisterConsult

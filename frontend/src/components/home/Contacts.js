@@ -12,7 +12,7 @@ class Contacts extends Component {
   }
 
   recentVisits = () => {
-    this.props.history.push('/profile')
+    this.props.history.push('/patient-profile')
   }
 
   createContact = () => {
@@ -20,6 +20,9 @@ class Contacts extends Component {
   }
   contacts = () => {
     this.props.history.push('/contacts')
+  }
+  qrCode = () => {
+    this.props.history.push('/qr-emergency')
   }
 
   render() {
@@ -82,6 +85,10 @@ class Contacts extends Component {
                 <Icon type="team" />
                 Contacts
               </Menu.Item>
+              <Menu.Item onClick={this.qrCode} key="5">
+                <Icon type="qrcode" />
+                QR Code
+              </Menu.Item>
             </Menu>
           </Sider>
           <div
@@ -95,8 +102,8 @@ class Contacts extends Component {
               <img src="images/eye.svg" width="120vw" />
               <br />
               <br />
-              <h1 style={{ textAlign: 'center' }}>Create a New contact!</h1>
-              <p>The contacts you add will be visible to others when you have an emergency.</p>
+              <h1 style={{ textAlign: 'center' }}>Your contacts!</h1>
+              <p>Your contacts can be seen by other people</p>
               {/* CONTAINER CARDS */}
               <div
                 style={{

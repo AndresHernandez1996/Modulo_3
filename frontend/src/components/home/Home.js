@@ -42,15 +42,6 @@ function Home() {
               Login
             </button>
           </NavLink>
-          <NavLink exact to="signup">
-            <button
-              color="#ed5151"
-              style={{ border: 'none', borderRadius: '50px', color: '#ed5151' }}
-              className="btn  btn-light my-2 my-sm-0"
-              type="submit">
-              Signup
-            </button>
-          </NavLink>
         </div>
       </nav>
       {/*TERMINA NAVBAR  */}
@@ -68,7 +59,7 @@ function Home() {
           <HomeCard />
         </div>
         <div>
-          <img alt="h" src="./images/heart.svg" width="300vh" />
+          <img alt="h" src="./images/heart.svg" width="300vw" />
         </div>
       </section>
       {/*TERMINA HEADER */}

@@ -2,15 +2,16 @@ import axios from 'axios'
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 import { Form, Input, Button, Select, Card } from 'antd'
-import Footer from './Footer'
+import Footer from '../home/Footer'
 const { Option } = Select
 
-class Signup extends Component {
+class DoctorSignup extends Component {
   state = {
     user: {
       name: '',
       lastName: '',
       gender: '',
+      role: '',
       professionalId: '',
       medicalspeciality: '',
       university: '',
@@ -33,6 +34,7 @@ class Signup extends Component {
             name: '',
             lastName: '',
             gender: '',
+            role: '',
             professionalId: '',
             medicalspeciality: '',
             university: '',
@@ -59,6 +61,12 @@ class Signup extends Component {
   handleSelect = value => {
     const { user } = this.state
     user.gender = value
+    this.setState({ user })
+  }
+
+  handleSelect2 = value => {
+    const { user } = this.state
+    user.role = value
     this.setState({ user })
   }
 
@@ -163,6 +171,10 @@ class Signup extends Component {
                 type="number"
                 placeholder="0 - 100"
               />
+              <label>Role</label>
+              <Select name="role" onChange={this.handleSelect2} placeholder="Doctor">
+                <Option value="Doctor">Doctor</Option>
+              </Select>
               <label>Phone Number</label>
               <Input
                 name="phoneNumber"
@@ -201,4 +213,4 @@ class Signup extends Component {
     )
   }
 }
-export default Signup
+export default DoctorSignup

@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 import { MyContext } from '../../context'
 import { NavLink } from 'react-router-dom'
-import { Menu, Icon, Layout, Card, Form, Input, Button, Select } from 'antd'
-import Footer from './Footer'
+import { Menu, Icon, Layout, Card } from 'antd'
+import Footer from '../home/Footer'
 const { Sider, Content } = Layout
-const { Option } = Select
 
-class CreateContact extends Component {
+class QrPatient extends Component {
   handleClick = e => {
     console.log('click ', e)
   }
@@ -71,7 +70,7 @@ class CreateContact extends Component {
           <Sider style={{ backgroundColor: 'white' }}>
             <Menu
               style={{ border: '', width: '205px' }}
-              defaultSelectedKeys={['2']}
+              defaultSelectedKeys={['5']}
               defaultOpenKeys={['sub1']}>
               <Menu.Item onClick={this.recentVisits} key="1">
                 <Icon type="solution" />
@@ -85,7 +84,7 @@ class CreateContact extends Component {
                 <Icon type="team" />
                 Contacts
               </Menu.Item>
-              <Menu.Item onClick={this.qrCode} key="5">
+              <Menu.Item onClick={this.qrCode} key="4">
                 <Icon type="qrcode" />
                 QR Code
               </Menu.Item>
@@ -99,76 +98,30 @@ class CreateContact extends Component {
               justifyContent: 'center'
             }}>
             <Content style={{ backgroundColor: 'white', padding: '5% 0 0 0' }}>
-              <img src="images/eye.svg" width="120vw" />
+              <img src="images/alert.svg" width="120vw" />
               <br />
               <br />
-              <h1 style={{ textAlign: 'center' }}>Create a New contact!</h1>
-              <p>The contacts you add will be visible to others when you have an emergency.</p>
+              <h1 style={{ textAlign: 'center' }}>Attention! Andrés Hernández</h1>
+              <p>
+                This code can be shared with your contacts, this shows your emergency contacts and
+                nearby hospitals
+              </p>
               {/* CONTAINER CARDS */}
-              <div
-                style={{
-                  margin: '7% 0',
-                  display: 'flex',
-                  justifyContent: 'space-around',
-                  flexFlow: 'wrap'
-                }}>
-                {/* CONTAINER CARDS */}
-                {/* ----------------------------- */}
-                {/* FORM CONTACT */}
-                <Card style={{ border: 'none', fontSize: '5px', width: '40vw' }}>
-                  <Form onSubmit={this.onSubmit}>
-                    <label>Name</label>
-                    <Input
-                      name="name"
-                      onChange={this.handleInputs}
-                      type="text"
-                      placeholder="Enrique"
-                    />
-                    <label>Lastname</label>
-                    <Input
-                      name="lastName"
-                      onChange={this.handleInputs}
-                      type="text"
-                      placeholder="García"
-                    />
-                    <label>Age</label>
-                    <Input name="age" onChange={this.handleInputs} type="number" placeholder="20" />
-                    <label>Family Relationship</label>
-                    <Select
-                      name="familyRelationship"
-                      onChange={this.handleInputs}
-                      placeholder="Cousin">
-                      <Option value="Mother">Mother</Option>
-                      <Option value="Father">Father</Option>
-                      <Option value="Son">Son</Option>
-                      <Option value="Uncle">Uncle</Option>
-                      <Option value="Aunt">Aunt</Option>
-                      <Option value="Cousin">Cousin</Option>
-                      <Option value="Friend">Friend</Option>
-                    </Select>
-                    <label>Phone Number</label>
-                    <Input
-                      name="phoneNumber"
-                      onChange={this.handleInputs}
-                      type="tel"
-                      placeholder="55 - 45 74 92 18"
-                    />
-                    <br />
-                    <br />
-                    <Button htmlType="submit">Create</Button>
-                  </Form>
-                </Card>
-              </div>
+
+              <img
+                style={{ margin: '10% 0' }}
+                src="https://res.cloudinary.com/ironhacker/image/upload/v1570065915/Captura_de_Pantalla_2019-10-02_a_la_s_8.24.37_p._m._wyi0dk.png"
+                width="180px"></img>
+              {/* CARD UNICA */}
             </Content>
           </div>
         </Layout>
-
         <Footer />
       </div>
     )
   }
 }
 
-CreateContact.contextType = MyContext
+QrPatient.contextType = MyContext
 
-export default CreateContact
+export default QrPatient
