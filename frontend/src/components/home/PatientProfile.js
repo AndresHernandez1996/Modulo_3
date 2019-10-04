@@ -24,6 +24,13 @@ class PatientProfile extends Component {
     this.props.history.push('/qr-emergency')
   }
 
+  componentDidMount() {
+    if (!this.context.state.loggedUser) return this.props.history.push('/login')
+    const userData = this.context.state.loggedUser
+    this.setState(userData)
+    localStorage.setItem('user', JSON.stringify(userData))
+  }
+
   render() {
     return (
       <div>

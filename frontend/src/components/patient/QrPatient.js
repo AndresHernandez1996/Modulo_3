@@ -70,7 +70,7 @@ class QrPatient extends Component {
           <Sider style={{ backgroundColor: 'white' }}>
             <Menu
               style={{ border: '', width: '205px' }}
-              defaultSelectedKeys={['5']}
+              defaultSelectedKeys={['4']}
               defaultOpenKeys={['sub1']}>
               <Menu.Item onClick={this.recentVisits} key="1">
                 <Icon type="solution" />

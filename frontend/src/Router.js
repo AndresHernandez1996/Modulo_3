@@ -11,6 +11,7 @@ import DoctorSignup from './components/Doctor/DoctorSignup'
 import PatientSignup from './components/home/PatientSignup'
 import RegisterConsult from './components/Doctor/RegisterConsult'
 import QrPatient from './components/patient/QrPatient'
+import CreatePrescription from './components/Doctor/CreatePrescription'
 
 const Router = () => (
   <BrowserRouter>
@@ -23,8 +24,9 @@ const Router = () => (
       <Route exact path="/create-contact" component={CreateContact} />
       <Route exact path="/qr-emergency" component={QrPatient} />
       <Route exact path="/contacts" component={Contacts} />
-      <Route exact path="/doctor-profile" component={DoctorProfile} />
+      <Route exact path="/doctor-profile/:id" component={DoctorProfile} />
       <Route exact path="/register-consult" component={RegisterConsult} />
+      <Route exact path="/test" component={CreatePrescription} />
       <Route component={NotFound} />
     </Switch>
   </BrowserRouter>

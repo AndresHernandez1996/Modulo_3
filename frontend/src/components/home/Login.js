@@ -26,8 +26,12 @@ class Login extends Component {
     e.preventDefault()
     AUTH_SERVICE.login(this.state.user)
       .then(response => {
-        this.context.logUser(response.data.user)
-        this.props.history.push('/doctor-profile')
+        localStorage.setItem('user', JSON.stringify(response.data.user))
+        if (response.data.user.role === 'Doctor') {
+          this.props.history.push(`/doctor-profile/${response.data.user._id}`)
+        } else {
+          this.props.history.push(`/patient-profile/${response.data.user._id}`)
+        }
       })
       .catch(error => {
         console.log(error)

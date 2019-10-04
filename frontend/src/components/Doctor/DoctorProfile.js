@@ -9,65 +9,39 @@ const { Option } = Select
 
 class DoctorProfile extends Component {
   state = {
-    user: {
-      name: '',
-      lastName: '',
-      gender: '',
-      role: '',
-      professionalId: '',
-      medicalspeciality: '',
-      university: '',
-      age: '',
-      password: '',
-      phoneNumber: '',
-      email: ''
-    },
+    user: {},
     visible: false
   }
 
   onSubmit = e => {
     e.preventDefault()
     const { user } = this.state
+
     axios
-      .post(`http://localhost:3000/auth/profile/${this.props.params.id}`, user)
+      .put(`http://localhost:3000/auth/profile/${user._id}`, user)
       .then(({ data }) => {
-        console.log(data)
         this.setState({
-          user: {
-            name: '',
-            lastName: '',
-            gender: '',
-            role: '',
-            professionalId: '',
-            medicalspeciality: '',
-            university: '',
-            age: '',
-            password: '',
-            phoneNumber: '',
-            email: ''
-          }
+          user: {}
         })
       })
       .catch(error => {
         console.log(error)
       })
   }
-
+  //CODIGO DE ISA NO TOCAR BITCH
   componentDidMount() {
-    if (!this.context.state.loggedUser) return this.props.history.push('/login')
-    const userData = this.context.state.loggedUser
-    this.setState(userData)
+    if (localStorage.user) {
+      let user = JSON.parse(localStorage.user)
+      this.setState({ user })
+    }
+    if (!localStorage.user) return this.props.history.push('/login')
   }
 
   handleInputs = e => {
-    // const { user } = this.state
-    // const key = e.target.name
-    // user[key] = e.target.value
-    // this.setState({ user })
-    // console.log(this.state.user)
-    this.setState({
-      user: { [e.target.name]: e.target.value }
-    })
+    const { user } = this.state
+    const key = e.target.name
+    user[key] = e.target.value
+    this.setState({ user })
   }
 
   handleClick = e => {
@@ -75,7 +49,7 @@ class DoctorProfile extends Component {
   }
 
   registerConsult = () => {
-    this.props.history.push('register-consult')
+    this.props.history.push('/register-consult')
   }
 
   myPrescriptions = () => {
@@ -83,7 +57,7 @@ class DoctorProfile extends Component {
   }
 
   doctorProfile = () => {
-    this.props.history.push('/doctor-profile')
+    this.props.history.push(`/doctor-profile/:id`)
   }
 
   showModal = () => {
@@ -107,7 +81,7 @@ class DoctorProfile extends Component {
   }
 
   render() {
-    let user = this.state
+    let { user } = this.state
     return (
       <div>
         <nav
@@ -134,20 +108,19 @@ class DoctorProfile extends Component {
                 </a>
               </li>
             </ul>
-            <NavLink exact to="/">
-              <button
-                onClick={this.context.logOut}
-                color="#ed5151"
-                style={{ border: 'none', borderRadius: '50px', color: '#ed5151' }}
-                className="btn  btn-light my-2 my-sm-0">
-                Logout
-              </button>
-            </NavLink>
+            <button
+              onClick={this.context.logOut}
+              color="#ed5151"
+              style={{ border: 'none', borderRadius: '50px', color: '#ed5151' }}
+              className="btn  btn-light my-2 my-sm-0">
+              Logout
+            </button>
           </div>
         </nav>
         {/* EMPIEZA SIDE NAV */}
         {/* TERMINA SIDE NAV */}
         <Layout>
+          {/* < Sider user={this.state.user} /> */}
           <Sider style={{ backgroundColor: 'white' }}>
             <Menu
               style={{ border: '', width: '205px' }}
@@ -185,44 +158,45 @@ class DoctorProfile extends Component {
               {/* CONTAINER CARDS */}
               {/* SE MUESTRA SIN MODAL */}
               <section style={{ textAlign: 'start' }}>
-                <Card style={{ border: 'none', fontSize: '5px', width: '40vw' }}>
-                  <Form onSubmit={this.onSubmit}>
-                    <div>
-                      <div>
-                        <label>
-                          <b>Gender:</b> <span>{user.gender}</span>
-                        </label>
-                      </div>
-                      <div>
-                        <label>
-                          <b>Proffesional ID:</b> <span>{user.professionalId}</span>
-                        </label>
-                      </div>
-                      <div>
-                        <label>
-                          <b>University:</b> <span>{user.university}</span>
-                        </label>
-                      </div>
-                      <div>
-                        <label>
-                          <b>Age:</b> <span>{user.age}</span>
-                        </label>
-                      </div>
-                      <div>
-                        <label>
-                          <b>Phone Number:</b> <span>{user.phoneNumber}</span>
-                        </label>
-                      </div>
-                      <div>
-                        <label>
-                          <b>Email:</b> <span>{user.email}</span>
-                        </label>
-                      </div>
-                    </div>
-                    <br />
-                    <br />
-                  </Form>
-                </Card>
+                <div>
+                  <div>
+                    <label>
+                      <b>Gender:</b> <span>{user.gender}</span>
+                    </label>
+                  </div>
+                  <div>
+                    <label>
+                      <b>Proffesional ID:</b> <span>{user.professionalId}</span>
+                    </label>
+                  </div>
+                  <div>
+                    <label>
+                      <b>University:</b> <span>{user.university}</span>
+                    </label>
+                  </div>
+                  <div>
+                    <label>
+                      <b>University:</b> <span>{user._id}</span>
+                    </label>
+                  </div>
+                  <div>
+                    <label>
+                      <b>Age:</b> <span>{user.age}</span>
+                    </label>
+                  </div>
+                  <div>
+                    <label>
+                      <b>Phone Number:</b> <span>{user.phoneNumber}</span>
+                    </label>
+                  </div>
+                  <div>
+                    <label>
+                      <b>Email:</b> <span>{user.email}</span>
+                    </label>
+                  </div>
+                </div>
+                <br />
+                <br />
               </section>
               {/* SE MUESTRA SIN MODAL */}
 
@@ -251,84 +225,45 @@ class DoctorProfile extends Component {
                         <Input
                           type="text"
                           name="name"
-                          placeholder={user.name}
                           onChange={this.handleInputs}
-                          required
-                          value={user.name}
+                          defaultValue={user.name}
                         />
                         <label>Last Name</label>
                         <Input
                           name="lastName"
-                          value={user.lastName}
+                          defaultValue={user.lastName}
                           onChange={this.handleInputs}
                           placeholder="Hernández"
                         />
-                        <label>Gender</label>
-                        <Select
-                          name="gender"
-                          readOnly
-                          onChange={this.handleSelect}
-                          placeholder="Male">
-                          <Option value="Male">Male</Option>
-                          <Option value="Female">Female</Option>
-                          <Option value="Other">Other</Option>
-                        </Select>
-                        <label>Professional ID</label>
-                        <Input
-                          readOnly
-                          name="professionalId"
-                          value={user.professionalId}
-                          onChange={this.handleInputs}
-                          placeholder="1629426|C1"
-                        />
+                        {/* <label>Professional ID</label>
+                        <Input readOnly name="professionalId" value={user.professionalId} />
                         <label>Medical Speciality</label>
-                        <Input
-                          readOnly
-                          name="medicalspeciality"
-                          value={user.medicalspeciality}
-                          onChange={this.handleInputs}
-                          placeholder="Surgeon"
-                        />
+                        <Input readOnly name="medicalspeciality" value={user.medicalspeciality} /> */}
                         <label>University</label>
                         <Input
                           name="university"
-                          value={user.university}
+                          defaultValue={user.university}
                           onChange={this.handleInputs}
                           placeholder="UNAM"
                         />
-                        <label>Age</label>
+                        {/* <label>Age</label>
                         <Input
                           name="age"
-                          value={user.age}
+                          defaultValue={user.age}
                           onChange={this.handleInputs}
                           type="number"
                           placeholder="0 - 100"
-                        />
-                        <label>Role</label>
-                        <Select
-                          readOnly
-                          name="role"
-                          onChange={this.handleSelect2}
-                          placeholder="Doctor">
-                          <Option value="Doctor">Doctor</Option>
-                        </Select>
+                        /> */}
                         <label>Phone Number</label>
                         <Input
                           name="phoneNumber"
-                          value={user.phoneNumber}
+                          defaultValue={user.phoneNumber}
                           onChange={this.handleInputs}
                           type="number"
                           placeholder="55 - 55 55 55 55"
                         />
-                        <label>Email</label>
-                        <Input
-                          readOnly
-                          name="email"
-                          value={user.email}
-                          onChange={this.handleInputs}
-                          type="email"
-                          placeholder="jolteon@jolteon.com"
-                        />
+                        {/* <label>Email</label>
+                        <Input readOnly name="email" value={user.email} type="email" /> */}
                         <br />
                         <br />
                         <small>If you signup, you agree with all our terms and conditions </small>

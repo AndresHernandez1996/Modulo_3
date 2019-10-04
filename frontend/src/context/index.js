@@ -9,12 +9,14 @@ class MyProvider extends Component {
   }
 
   logUser = loggedUser => {
+    console.log('este es el usuario de login a context', loggedUser)
     this.setState({ loggedUser })
   }
 
   logOut = () => {
     AUTH_SERVICE.logOut()
       .then(response => {
+        localStorage.clear()
         console.log(response)
         this.setState({ loggedUser: null })
       })

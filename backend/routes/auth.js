@@ -25,13 +25,13 @@ router.get('/users', (req, res, next) => {
     .catch(error => res.status(500).json({ error }))
 })
 
-router.get('/profile', isAuth, (req, res, next) => {
+router.get('/profile/:id', isAuth, (req, res, next) => {
   User.findById(req.user._id)
     .then(user => res.status(200).json({ user }))
     .catch(err => res.status(500).json({ err }))
 })
 
-router.put('/profile/:id', (req, res, next) => {
+router.put('/profile/:id', isAuth, (req, res, next) => {
   User.findByIdAndUpdate(req.params.id, { ...req.body }, { new: true })
     .then(user => res.status(200).json({ user }))
     .catch(error => res.status(500).json({ error }))

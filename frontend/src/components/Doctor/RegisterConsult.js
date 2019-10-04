@@ -18,7 +18,7 @@ class RegisterConsult extends Component {
     this.props.history.push('/doctor-prescriptions')
   }
   doctorProfile = () => {
-    this.props.history.push('/doctor-profile')
+    this.props.history.push('/doctor-profile/:id')
   }
 
   render() {
