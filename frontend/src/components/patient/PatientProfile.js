@@ -15,20 +15,6 @@ class PatientProfile extends Component {
     console.log('click ', e)
   }
 
-  recentVisits = () => {
-    this.props.history.push('/patient-profile')
-  }
-
-  createContact = () => {
-    this.props.history.push('/create-contact')
-  }
-  contacts = () => {
-    this.props.history.push('/contacts')
-  }
-  qrCode = () => {
-    this.props.history.push(`/qr-emergency/${this.state.user._id}`)
-  }
-
   componentDidMount() {
     if (localStorage.user) {
       let user = JSON.parse(localStorage.user)
