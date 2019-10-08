@@ -4,12 +4,12 @@ import { NavLink } from 'react-router-dom'
 import { Layout } from 'antd'
 import Footer from '../home/Footer'
 import SiderPatient from './SiderPatient'
+import ContactCard from './ContactCard'
 const { Content } = Layout
 
-class PatientProfile extends Component {
+class Contacts extends Component {
   state = {
-    user: {},
-    visible: false
+    user: {}
   }
   handleClick = e => {
     console.log('click ', e)
@@ -26,26 +26,19 @@ class PatientProfile extends Component {
     this.props.history.push('/contacts')
   }
   qrCode = () => {
-    this.props.history.push(`/qr-emergency/${this.state.user._id}`)
+    this.props.history.push('/qr-emergency')
   }
 
   componentDidMount() {
     if (localStorage.user) {
-      let user = JSON.parse(localStorage.user)
+      let user = JSON.parse(localStorage.getItem('user'))
       this.setState({ user })
     }
     if (!localStorage.user) return this.props.history.push('/login')
   }
 
-  // componentDidMount() {
-  //   if (!this.context.state.loggedUser) return this.props.history.push('/login')
-  //   const userData = this.context.state.loggedUser
-  //   this.setState(userData)
-  //   localStorage.setItem('user', JSON.stringify(userData))
-  // }
-
   render() {
-    let { user } = this.state
+    const user = this.state.user
     return (
       <div>
         <nav
@@ -97,67 +90,21 @@ class PatientProfile extends Component {
               justifyContent: 'center'
             }}>
             <Content style={{ backgroundColor: 'white', padding: '5% 0 0 0' }}>
-              <img alt="foto" src={user.imageProfile} width="120vw" />
+              <img alt="contact" src={user.imageProfile} width="120vw" />
               <br />
               <br />
-              <h1 style={{ textAlign: 'center' }}>
-                Welcome {user.name} {user.lastName}
-              </h1>
-              <p>
-                Manage your information and privacy and security options to make Google more
-                relevant to you.
-              </p>
+              <h1 style={{ textAlign: 'center' }}>Your contacts!</h1>
+              <p>Your contacts can be seen by other people</p>
               {/* CONTAINER CARDS */}
               <div
                 style={{
-                  margin: '7% 0',
+                  margin: '3% 0',
                   display: 'flex',
                   justifyContent: 'space-around',
                   flexFlow: 'wrap'
                 }}>
-                {/* CONTAINER CARDS */}
-                {/* ----------------------------- */}
                 {/* CARD UNICA */}
-                <div
-                  style={{
-                    border: '1px solid #e8e8e8',
-                    padding: ' 20px 20px 20px 20px',
-                    width: '30%',
-                    margin: '3% 0 3% 0'
-                  }}>
-                  <div
-                    style={{
-                      display: 'flex',
-                      flexFlow: 'column',
-                      fontSize: '10px',
-                      textAlign: 'start'
-                    }}>
-                    <span style={{ fontSize: '11.3px' }}>
-                      <b>Doctor: </b>
-                    </span>
-                    <span>Enrique Ramirez</span>
-                    <span style={{ fontSize: '11.3px' }}>
-                      <b>Hospital: </b>
-                    </span>
-                    <span>Angeles lomas</span>
-                    <span style={{ fontSize: '11.3px' }}>
-                      <b> Date:</b>
-                    </span>
-                    <span>30 / 09 / 2019</span>
-                    <span style={{ fontSize: '11.3px' }}>
-                      <b>Prescription: </b>
-                    </span>
-                    <span>Manage your information and privacy and security options t</span>
-                  </div>
-                  <div style={{ margin: '5% 0' }}>
-                    <img alt="sour" src="/images/prescription.svg" width="70px" />
-                  </div>
-                  <div style={{ textAlign: 'center' }}>
-                    <span style={{ fontSize: '11.3px' }} n>
-                      Ver detalle
-                    </span>
-                  </div>
-                </div>
+                <ContactCard history={this.props.history} />
                 {/* CARD UNICA */}
               </div>
             </Content>
@@ -170,6 +117,6 @@ class PatientProfile extends Component {
   }
 }
 
-PatientProfile.contextType = MyContext
+Contacts.contextType = MyContext
 
-export default PatientProfile
+export default Contacts
