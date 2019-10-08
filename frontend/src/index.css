@@ -14,8 +14,6 @@ nav {
 .ant-carousel .slick-slide {
   text-align: center;
   height: 160px;
-  line-height: 600px;
-  background: #364d79;
   overflow: hidden;
 }
 

@@ -13,7 +13,13 @@ const contactSchema = new Schema(
     imageProfile: {
       type: String,
       default: 'https://res.cloudinary.com/ironhacker/image/upload/v1569943485/eye_qv6bmf.svg'
-    }
+    },
+    parent: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+      }
+    ]
   },
   {
     timestamps: true,
