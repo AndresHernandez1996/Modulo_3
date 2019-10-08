@@ -98,10 +98,8 @@ class Contacts extends Component {
               {/* CONTAINER CARDS */}
               <div
                 style={{
-                  margin: '3% 0',
-                  display: 'flex',
-                  justifyContent: 'space-around',
-                  flexFlow: 'wrap'
+                  width: '90%',
+                  margin: '0 0 0 8%'
                 }}>
                 {/* CARD UNICA */}
                 <ContactCard history={this.props.history} />
