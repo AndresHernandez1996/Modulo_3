@@ -78,7 +78,7 @@ class DoctorSignup extends Component {
         <nav
           style={{ padding: '.6% 5% .6% 5%', backgroundColor: '#ed5151' }}
           className="navbar navbar-expand-lg navbar-light ">
-          <a style={{ color: 'white' }} className="navbar-brand" href="#">
+          <a style={{ color: 'white' }} className="navbar-brand" href="/">
             JOLTEON
           </a>
           <button
@@ -94,7 +94,7 @@ class DoctorSignup extends Component {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item active">
-                <a style={{ color: 'white' }} className="nav-link" href="#">
+                <a style={{ color: 'white' }} className="nav-link" href="/">
                   <span className="sr-only">(current)</span>
                 </a>
               </li>

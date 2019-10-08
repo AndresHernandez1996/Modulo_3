@@ -1,15 +1,20 @@
 import React, { Component } from 'react'
 import { MyContext } from '../../context'
 import { NavLink } from 'react-router-dom'
-import { Menu, Icon, Layout, Card, Form, Input, Select, Button, Modal } from 'antd'
+import { Layout, Card, Form, Input, Button, Modal } from 'antd'
 import Footer from '../home/Footer'
 import axios from 'axios'
-const { Sider, Content } = Layout
-const { Option } = Select
+import SiderDoctor from './SiderDoctor'
+const { Content } = Layout
 
 class DoctorProfile extends Component {
   state = {
-    user: {},
+    user: {
+      name: '',
+      lastName: '',
+      university: '',
+      phoneNumber: ''
+    },
     visible: false
   }
 
@@ -18,20 +23,20 @@ class DoctorProfile extends Component {
     const { user } = this.state
 
     axios
-      .put(`http://localhost:3000/auth/profile/${user._id}`, user)
+      .put(`http://localhost:3000/auth/doctor-profile/${user._id}`, user)
       .then(({ data }) => {
-        this.setState({
-          user: {}
-        })
+        console.log('Esta es la data del user', data)
+        localStorage.setItem('user')
       })
       .catch(error => {
         console.log(error)
       })
   }
+
   //CODIGO DE ISA NO TOCAR BITCH
   componentDidMount() {
     if (localStorage.user) {
-      let user = JSON.parse(localStorage.user)
+      let user = JSON.parse(localStorage.getItem('user'))
       this.setState({ user })
     }
     if (!localStorage.user) return this.props.history.push('/login')
@@ -48,21 +53,15 @@ class DoctorProfile extends Component {
     console.log('click ', e)
   }
 
-  registerConsult = () => {
-    this.props.history.push('/register-consult')
-  }
-
-  myPrescriptions = () => {
-    this.props.history.push('/doctor-prescriptions')
-  }
-
-  doctorProfile = () => {
-    this.props.history.push(`/doctor-profile/:id`)
-  }
-
   showModal = () => {
     this.setState({
       visible: true
+    })
+  }
+
+  hideModal = () => {
+    this.setState({
+      visible: false
     })
   }
 
@@ -82,12 +81,13 @@ class DoctorProfile extends Component {
 
   render() {
     let { user } = this.state
+
     return (
       <div>
         <nav
           style={{ padding: '.6% 5% .6% 5%', backgroundColor: '#ed5151' }}
           className="navbar navbar-expand-lg navbar-light ">
-          <a style={{ color: 'white' }} className="navbar-brand" href="#">
+          <a style={{ color: 'white' }} className="navbar-brand" href="/">
             JOLTEON
           </a>
           <button
@@ -103,43 +103,26 @@ class DoctorProfile extends Component {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item active">
-                <a style={{ color: 'white' }} className="nav-link" href="#">
+                <a style={{ color: 'white' }} className="nav-link" href="/">
                   <span className="sr-only">(current)</span>
                 </a>
               </li>
             </ul>
-            <button
-              onClick={this.context.logOut}
-              color="#ed5151"
-              style={{ border: 'none', borderRadius: '50px', color: '#ed5151' }}
-              className="btn  btn-light my-2 my-sm-0">
-              Logout
-            </button>
+            <NavLink exact to="/">
+              <button
+                onClick={this.context.logOut}
+                color="#ed5151"
+                style={{ border: 'none', borderRadius: '50px', color: '#ed5151' }}
+                className="btn  btn-light my-2 my-sm-0">
+                Logout
+              </button>
+            </NavLink>
           </div>
         </nav>
         {/* EMPIEZA SIDE NAV */}
         {/* TERMINA SIDE NAV */}
         <Layout>
-          {/* < Sider user={this.state.user} /> */}
-          <Sider style={{ backgroundColor: 'white' }}>
-            <Menu
-              style={{ border: '', width: '205px' }}
-              defaultSelectedKeys={['4']}
-              defaultOpenKeys={['sub1']}>
-              <Menu.Item onClick={this.registerConsult} key="1">
-                <Icon type="solution" />
-                Register medical consultation
-              </Menu.Item>
-              <Menu.Item onClick={this.myPrescriptions} key="3">
-                <Icon type="file-search" />
-                My prescriptions
-              </Menu.Item>
-              <Menu.Item onClick={this.doctorProfile} key="4">
-                <Icon type="user" />
-                Profile
-              </Menu.Item>
-            </Menu>
-          </Sider>
+          <SiderDoctor history={this.props.history} />
           <div
             style={{
               textAlign: 'center',
@@ -148,7 +131,7 @@ class DoctorProfile extends Component {
               justifyContent: 'center'
             }}>
             <Content style={{ backgroundColor: 'white', padding: '5% 0 0 0' }}>
-              <img src={user.imageProfile} width="120px" />
+              <img alt="docprofile" src={user.imageProfile} width="120px" />
               <br />
               <br />
               <h1 style={{ textAlign: 'center' }}>
@@ -216,7 +199,8 @@ class DoctorProfile extends Component {
                 <Modal
                   title="Edit your profile"
                   visible={this.state.visible}
-                  onOk={this.handleOk}
+                  okText=" "
+                  okButtonProps={{ disabled: true }}
                   onCancel={this.handleCancel}>
                   <section style={{ display: 'flex', justifyContent: 'center' }}>
                     <Card style={{ border: 'none', fontSize: '5px', width: '40vw' }}>
@@ -235,10 +219,6 @@ class DoctorProfile extends Component {
                           onChange={this.handleInputs}
                           placeholder="Hernández"
                         />
-                        {/* <label>Professional ID</label>
-                        <Input readOnly name="professionalId" value={user.professionalId} />
-                        <label>Medical Speciality</label>
-                        <Input readOnly name="medicalspeciality" value={user.medicalspeciality} /> */}
                         <label>University</label>
                         <Input
                           name="university"
@@ -246,14 +226,6 @@ class DoctorProfile extends Component {
                           onChange={this.handleInputs}
                           placeholder="UNAM"
                         />
-                        {/* <label>Age</label>
-                        <Input
-                          name="age"
-                          defaultValue={user.age}
-                          onChange={this.handleInputs}
-                          type="number"
-                          placeholder="0 - 100"
-                        /> */}
                         <label>Phone Number</label>
                         <Input
                           name="phoneNumber"
@@ -262,14 +234,12 @@ class DoctorProfile extends Component {
                           type="number"
                           placeholder="55 - 55 55 55 55"
                         />
-                        {/* <label>Email</label>
-                        <Input readOnly name="email" value={user.email} type="email" /> */}
                         <br />
                         <br />
-                        <small>If you signup, you agree with all our terms and conditions </small>
+                        <small>check that all your data is correct</small>
                         <br />
                         <br />
-                        <Button htmlType="submit">Create account</Button>
+                        <Button htmlType="submit">Update your profile</Button>
                       </Form>
                     </Card>
                   </section>

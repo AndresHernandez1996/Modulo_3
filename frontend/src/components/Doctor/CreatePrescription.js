@@ -1,119 +1,57 @@
 import React, { Component } from 'react'
 import { MyContext } from '../../context'
 import { NavLink } from 'react-router-dom'
-import { Menu, Icon, Layout, Card, Form, Input, Select, Button, Modal } from 'antd'
+import { Layout } from 'antd'
 import Footer from '../home/Footer'
 import axios from 'axios'
-const { Sider, Content } = Layout
-const { Option } = Select
+import SiderDoctor from './SiderDoctor'
+const { Content } = Layout
 
 class CreatePrescription extends Component {
   state = {
-    user: {
-      name: '',
-      lastName: '',
-      gender: '',
-      role: '',
-      professionalId: '',
-      medicalspeciality: '',
-      university: '',
-      age: '',
-      password: '',
-      phoneNumber: '',
-      email: ''
-    },
-    visible: false
+    user: {},
+    prescription: {}
   }
 
   onSubmit = e => {
     e.preventDefault()
-    const { user } = this.state
+    const { prescription } = this.state
     axios
-      .post(`http://localhost:3000/auth/profile/${this.props.params.id}`, user)
+      .post(`http://localhost:3000/doctor/create-prescription`, prescription)
       .then(({ data }) => {
-        console.log(`<<<<<<<<<<<<<<<<`, data)
-        this.setState({
-          user: {
-            name: '',
-            lastName: '',
-            gender: '',
-            role: '',
-            professionalId: '',
-            medicalspeciality: '',
-            university: '',
-            age: '',
-            password: '',
-            phoneNumber: '',
-            email: ''
-          }
-        })
+        console.log('Esta es la prescription', data)
+        this.setState({})
+        this.props.history.push(`/my-prescriptions/${this.state.user._id}`)
       })
       .catch(error => {
         console.log(error)
       })
   }
 
-  //   componentDidMount() {
-  //     if (!this.context.state.loggedUser) return this.props.history.push('/login')
-  //     const userData = this.context.state.loggedUser
-  //     this.setState(userData)
-  //   }
+  componentDidMount() {
+    if (localStorage.user) {
+      let user = JSON.parse(localStorage.getItem('user'))
+      this.setState({ user })
+    }
+    if (!localStorage.user) return this.props.history.push('/login')
+  }
 
   handleInputs = e => {
-    const { user } = this.state
+    const { prescription } = this.state
     const key = e.target.name
-    user[key] = e.target.value
-    this.setState({ user })
-    console.log('<<<<<<<<<<hfgfgfgfgfgf<<<<<<', this.state.user)
-    // this.setState({
-    //   user: { [e.target.name]: e.target.value }
-    // })
-  }
-
-  handleClick = e => {
-    console.log('click ', e)
-  }
-
-  registerConsult = () => {
-    this.props.history.push('register-consult')
-  }
-
-  myPrescriptions = () => {
-    this.props.history.push('/doctor-prescriptions')
-  }
-
-  doctorProfile = () => {
-    this.props.history.push('/doctor-profile')
-  }
-
-  showModal = () => {
-    this.setState({
-      visible: true
-    })
-  }
-
-  handleOk = e => {
-    console.log(e)
-    this.setState({
-      visible: false
-    })
-  }
-
-  handleCancel = e => {
-    console.log(e)
-    this.setState({
-      visible: false
-    })
+    prescription[key] = e.target.value
+    this.setState({ prescription })
+    console.log(this.state.prescription)
   }
 
   render() {
-    let user = this.state
+    const user = this.state.user
     return (
       <div>
         <nav
           style={{ padding: '.6% 5% .6% 5%', backgroundColor: '#ed5151' }}
           className="navbar navbar-expand-lg navbar-light ">
-          <a style={{ color: 'white' }} className="navbar-brand" href="#">
+          <a style={{ color: 'white' }} className="navbar-brand" href="/">
             JOLTEON
           </a>
           <button
@@ -129,7 +67,7 @@ class CreatePrescription extends Component {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item active">
-                <a style={{ color: 'white' }} className="nav-link" href="#">
+                <a style={{ color: 'white' }} className="nav-link" href="/">
                   <span className="sr-only">(current)</span>
                 </a>
               </li>
@@ -145,28 +83,8 @@ class CreatePrescription extends Component {
             </NavLink>
           </div>
         </nav>
-        {/* EMPIEZA SIDE NAV */}
-        {/* TERMINA SIDE NAV */}
         <Layout>
-          <Sider style={{ backgroundColor: 'white' }}>
-            <Menu
-              style={{ border: '', width: '205px' }}
-              defaultSelectedKeys={['4']}
-              defaultOpenKeys={['sub1']}>
-              <Menu.Item onClick={this.registerConsult} key="1">
-                <Icon type="solution" />
-                Register medical consultation
-              </Menu.Item>
-              <Menu.Item onClick={this.myPrescriptions} key="3">
-                <Icon type="file-search" />
-                My prescriptions
-              </Menu.Item>
-              <Menu.Item onClick={this.doctorProfile} key="4">
-                <Icon type="user" />
-                Profile
-              </Menu.Item>
-            </Menu>
-          </Sider>
+          <SiderDoctor history={this.props.history} />
           <div
             style={{
               textAlign: 'center',
@@ -175,174 +93,63 @@ class CreatePrescription extends Component {
               justifyContent: 'center'
             }}>
             <Content style={{ backgroundColor: 'white', padding: '5% 0 0 0' }}>
-              <img src={user.imageProfile} width="120px" />
+              <img alt="user" src={user.imageProfile} width="120px" />
               <br />
               <br />
               <h1 style={{ textAlign: 'center' }}>
                 Hello! {user.name} {user.lastName}
               </h1>
               <p>Is any of your personal data wrong?.</p>
-              {/* CONTAINER CARDS */}
-              {/* SE MUESTRA SIN MODAL */}
-              <section style={{ textAlign: 'start' }}>
-                <Card style={{ border: 'none', fontSize: '5px', width: '40vw' }}>
-                  <Form onSubmit={this.onSubmit}>
-                    <h1>Hola</h1>
-                    <Form onSubmit={this.onSubmit}>
-                      <label>Name</label>
-                      <Input
-                        name="name"
-                        onChange={this.handleInputs}
-                        type="text"
-                        placeholder="Enrique"
-                      />
-                      <label>Lastname</label>
-                      <Input
-                        name="lastName"
-                        onChange={this.handleInputs}
-                        type="text"
-                        placeholder="García"
-                      />
-                      <label>Age</label>
-                      <Input
-                        name="age"
-                        onChange={this.handleInputs}
-                        type="number"
-                        placeholder="20"
-                      />
-                      <label>Family Relationship</label>
-                      <Select
-                        name="familyRelationship"
-                        onChange={this.handleInputs}
-                        placeholder="Cousin">
-                        <Option value="Mother">Mother</Option>
-                        <Option value="Father">Father</Option>
-                        <Option value="Son">Son</Option>
-                        <Option value="Uncle">Uncle</Option>
-                        <Option value="Aunt">Aunt</Option>
-                        <Option value="Cousin">Cousin</Option>
-                        <Option value="Friend">Friend</Option>
-                      </Select>
-                      <label>Phone Number</label>
-                      <Input
-                        name="phoneNumber"
-                        onChange={this.handleInputs}
-                        type="tel"
-                        placeholder="55 - 45 74 92 18"
-                      />
-                      <br />
-                      <br />
-                      <Button htmlType="submit">Create</Button>
-                    </Form>
-                  </Form>
-                </Card>
-              </section>
+              <div
+                style={{
+                  margin: '7% 0',
+                  display: 'flex',
+                  justifyContent: 'space-around',
+                  flexFlow: 'wrap'
+                }}>
+                {/* FORM CONTACT */}
+                {/* CARD UNICA */}
+                <div
+                  style={{
+                    border: '1px solid #e8e8e8',
+                    padding: ' 20px 20px 20px 20px',
+                    width: '30%',
+                    margin: '3% 0 3% 0'
+                  }}>
+                  <div
+                    style={{
+                      display: 'flex',
+                      flexFlow: 'column',
+                      fontSize: '10px',
+                      textAlign: 'start'
+                    }}>
+                    <span style={{ fontSize: '11.3px' }}>
+                      <b>Patient: </b>
+                    </span>
+                    <span>Enrique Ramirez</span>
+                    <span style={{ fontSize: '11.3px' }}>
+                      <b>Symptoms: </b>
+                    </span>
+                    <span>Headeck</span>
+                    <span style={{ fontSize: '11.3px' }}>
+                      <b> Date:</b>
+                    </span>
+                    <span>30 / 09 / 2019</span>
+                  </div>
+                  <div style={{ margin: '5% 0' }}>
+                    <img src="/images/prescription.svg" width="70px" alt="" />
+                  </div>
+                  <div style={{ textAlign: 'center' }}>
+                    <span style={{ fontSize: '11.3px' }} n>
+                      Ver detalle
+                    </span>
+                  </div>
+                </div>
+                {/* CARD UNICA */}
+              </div>
               {/* SE MUESTRA SIN MODAL */}
 
               {/* CARD UNICA */}
-              <div>
-                <Button
-                  style={{
-                    backgroundColor: '#ed5151',
-                    margin: ' 0 0 10% 0',
-                    border: 'none',
-                    color: 'white'
-                  }}
-                  onClick={this.showModal}>
-                  Edit Profile
-                </Button>
-                {/* MODAL */}
-                <Modal
-                  title="Edit your profile"
-                  visible={this.state.visible}
-                  onOk={this.handleOk}
-                  onCancel={this.handleCancel}></Modal>
-              </div>
-              <table>
-                <tbody>
-                  <tr>
-                    <td style={{ textAlign: 'right' }}>
-                      <label>Título:</label>
-                    </td>{' '}
-                    <td>
-                      <input type="text" name="title" required />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td style={{ textAlign: 'right' }}>
-                      <label>Descripción:</label>
-                    </td>
-                    <td>
-                      <textarea type="text" name="description" required />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td style={{ textAlign: 'right' }}>
-                      <label>Imagen:</label>
-                    </td>
-                    <td>
-                      <input type="file" name="image" required />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td style={{ textAlign: 'right' }}>
-                      <label>Campo:</label>
-                    </td>
-                    <td>
-                      <select defaultValue="-" name="field" required>
-                        <option value="-" disabled>
-                          ---
-                        </option>
-                        <option value="literatura">Literatura</option>
-                        <option value="arteycultura">Arte y Cultura</option>
-                        <option value="cienciaytecnologia">Ciencia y Tecnología</option>
-                        <option value="emprendimiento">Emprendimiento</option>
-                        <option value="educacion">Educación</option>
-                        <option value="otros">Otro</option>
-                      </select>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td style={{ textAlign: 'right' }}>
-                      <label>Premio:</label>
-                    </td>
-                    <td>
-                      <input type="text" name="prize" required />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td style={{ textAlign: 'right' }}>
-                      <label>Tipo de cambio:</label>
-                    </td>
-                    <td>
-                      <select defaultValue="-" name="prizeCurrency" required>
-                        <option value="-" disabled>
-                          ---
-                        </option>
-                        <option value="MXN">MXN</option>
-                        <option value="USD">USD</option>
-                        <option value="EUR">EUR</option>
-                      </select>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td style={{ textAlign: 'right' }}>
-                      <label>Último día para aplicar:</label>
-                    </td>
-                    <td>
-                      <input type="date" name="endDate" required />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td style={{ textAlign: 'right' }}>
-                      <label>Link de la convocatoria:</label>
-                    </td>
-                    <td>
-                      <input type="text" name="link" required />
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
             </Content>
           </div>
         </Layout>
