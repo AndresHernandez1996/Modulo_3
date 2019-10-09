@@ -15,10 +15,20 @@ router.get('/contacts', (req, res, next) => {
     .catch(err => res.status(500).json({ err }))
 })
 
+router.delete('/contacts/:id', (req, res, next) => {
+  Contact.findByIdAndDelete(req.params.id)
+    .then(contact => res.status(200).json({ contact }))
+    .catch(error => res.status(500).json({ error }))
+})
+
 router.get('/qrCodeEmergency/:id', (req, res, next) => {
   Contact.find()
     .then(contact => res.status(201).json({ contact }))
     .catch(err => res.status(500).json({ err }))
 })
+
+function isAuth(req, res, next) {
+  req.isAuthenticated() ? next() : res.status(401).json({ msg: 'Log in first' })
+}
 
 module.exports = router

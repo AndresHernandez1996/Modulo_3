@@ -74,15 +74,6 @@ class Login extends Component {
                 Home
               </button>
             </NavLink>
-            <NavLink exact to="/">
-              <button
-                color="#ed5151"
-                style={{ border: 'none', borderRadius: '50px', color: '#ed5151' }}
-                className="btn  btn-light my-2 my-sm-0"
-                type="submit">
-                Signup
-              </button>
-            </NavLink>
           </div>
         </nav>
         {/*TERMINA NAVBAR  */}
