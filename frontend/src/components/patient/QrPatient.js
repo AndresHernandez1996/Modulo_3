@@ -88,7 +88,7 @@ class QrPatient extends Component {
               <div style={{ margin: '10% 0' }}>
                 <QRCode
                   size="70"
-                  value={`http://localhost:3001/qrCodeEmergency/${user.user._id}`}
+                  value={`https://jolteon.now.sh/qrCodeEmergency/${user.user._id}`}
                 />
               </div>
             </Content>

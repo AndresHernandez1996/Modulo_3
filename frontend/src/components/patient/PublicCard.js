@@ -13,7 +13,7 @@ class PublicCard extends Component {
     let user = JSON.parse(localStorage.getItem('user'))
     this.setState({ user })
     axios
-      .get('http://localhost:3000/contact/contacts')
+      .get('https://aqueous-scrubland-35857.herokuapp.com/contact/contacts')
       .then(({ data }) => {
         let contactsArr = []
         this.setState({ contacts: data.contact })
@@ -37,7 +37,7 @@ class PublicCard extends Component {
     return (
       <div>
         {contacts.map(contact => (
-          <div
+          <div key={contacts._id}
             style={{
               display: 'flex',
               justifyContent: 'space-around',
@@ -47,7 +47,7 @@ class PublicCard extends Component {
               width: '90%',
               margin: '1% 0 1% 0'
             }}>
-            <div
+            <div 
               style={{
                 display: 'flex',
                 flexFlow: 'column',

@@ -23,7 +23,7 @@ class DoctorProfile extends Component {
     const { user } = this.state
 
     axios
-      .put(`http://localhost:3000/auth/doctor-profile/${user._id}`, user)
+      .put(`https://aqueous-scrubland-35857.herokuapp.com/auth/doctor-profile/${user._id}`, user)
       .then(({ data }) => {
         console.log('Esta es la data del user', data)
         localStorage.setItem('user')

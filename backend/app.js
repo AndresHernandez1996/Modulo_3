@@ -23,7 +23,11 @@ const app = express()
 app.use(
   cors({
     credentials: true,
-    origin: [process.env.FRONTENDPOINT]
+    origin: [
+      process.env.FRONTENDPOINT,
+      'https://jolteon.now.sh',
+      'https://aqueous-scrubland-35857.herokuapp.com'
+    ]
   })
 )
 

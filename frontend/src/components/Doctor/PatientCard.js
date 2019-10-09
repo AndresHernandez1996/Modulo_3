@@ -37,7 +37,7 @@ class PatientCard extends Component {
 
   componentDidMount() {
     axios
-      .get('http://localhost:3000/auth/users')
+      .get('https://aqueous-scrubland-35857.herokuapp.com/auth/users')
       .then(({ data }) => {
         this.setState({ user: data })
       })
@@ -50,7 +50,10 @@ class PatientCard extends Component {
     e.preventDefault()
     const { prescription } = this.state
     axios
-      .post(`http://localhost:3000/doctor/create-prescription`, prescription)
+      .post(
+        `https://aqueous-scrubland-35857.herokuapp.com/doctor/create-prescription`,
+        prescription
+      )
       .then(({ data }) => {
         // console.log('Esta es la prescription', data)
         this.setState({})

@@ -27,7 +27,7 @@ class ContactCard extends Component {
     let user = JSON.parse(localStorage.getItem('user'))
     this.setState({ user })
     axios
-      .get('http://localhost:3000/contact/contacts')
+      .get('https://aqueous-scrubland-35857.herokuapp.com/contact/contacts')
       .then(({ data }) => {
         let contactsArr = []
         this.setState({ contacts: data.contact })
@@ -104,7 +104,9 @@ class ContactCard extends Component {
                 <Button
                   id={contact._id}
                   onClick={() => {
-                    axios.delete(`http://localhost:3000/contact/contacts/${contact._id}`)
+                    axios.delete(
+                      `https://aqueous-scrubland-35857.herokuapp.com/contact/contacts/${contact._id}`
+                    )
                     // console.log('Soy el delete verch', contact._id)
                     this.props.history.push(`/create-contact/${user._id}`)
                   }}

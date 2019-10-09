@@ -17,7 +17,10 @@ class CreatePrescription extends Component {
     e.preventDefault()
     const { prescription } = this.state
     axios
-      .post(`http://localhost:3000/doctor/create-prescription`, prescription)
+      .post(
+        `https://aqueous-scrubland-35857.herokuapp.com/doctor/create-prescription`,
+        prescription
+      )
       .then(({ data }) => {
         console.log('Esta es la prescription', data)
         this.setState({})

@@ -13,7 +13,7 @@ nav {
 }
 .ant-carousel .slick-slide {
   text-align: center;
-  height: 160px;
+  height: auto;
   overflow: hidden;
 }
 
@@ -39,7 +39,7 @@ button {
 .marker {
   background-image: url('/images/hospital.svg');
   background-size: cover;
-  width:30px;
+  width: 30px;
   height: 30px;
   border-radius: 50px;
   cursor: pointer;

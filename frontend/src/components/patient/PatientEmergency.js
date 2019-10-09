@@ -17,7 +17,7 @@ class PatientEmergency extends Component {
     let user = JSON.parse(localStorage.getItem('user'))
     this.setState({ user })
     axios
-      .get('http://localhost:3000/contact/contacts')
+      .get('https://aqueous-scrubland-35857.herokuapp.com/contact/contacts')
       .then(({ data }) => {
         let contactsArr = []
         this.setState({ contacts: data.contact })

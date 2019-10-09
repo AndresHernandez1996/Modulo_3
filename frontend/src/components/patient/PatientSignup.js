@@ -25,7 +25,7 @@ class PatientSignup extends Component {
     e.preventDefault()
     const { user } = this.state
     axios
-      .post('http://localhost:3000/auth/signup', user)
+      .post('https://aqueous-scrubland-35857.herokuapp.com/auth/signup', user)
       .then(({ data }) => {
         console.log(data)
         this.setState({
