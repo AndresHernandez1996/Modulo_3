@@ -49,10 +49,12 @@ const index = require('./routes/index')
 const auth = require('./routes/auth')
 const contact = require('./routes/contact')
 const doctor = require('./routes/doctor')
+const hospital = require('./routes/hospital')
 app.use('/', index)
 app.use('/auth', auth)
 app.use('/contact', contact)
 app.use('/doctor', doctor)
+app.use('/hospital', hospital)
 
 // Uncomment this line for production
 // app.get('/*', (req, res) => res.sendFile(__dirname + '/public/index.html'));
