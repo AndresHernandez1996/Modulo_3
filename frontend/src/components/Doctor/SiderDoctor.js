@@ -34,6 +34,10 @@ export default class SiderDoctor extends Component {
           style={{ border: '', width: '205px' }}
           defaultSelectedKeys={[]}
           defaultOpenKeys={['sub1']}>
+          <Menu.Item onClick={this.doctorProfile} key="4">
+            <Icon type="user" />
+            Profile
+          </Menu.Item>
           <Menu.Item onClick={this.registerConsult} key="1">
             <Icon type="solution" />
             Register medical consultation
@@ -41,10 +45,6 @@ export default class SiderDoctor extends Component {
           <Menu.Item onClick={this.myPrescriptions} key="3">
             <Icon type="file-search" />
             My prescriptions
-          </Menu.Item>
-          <Menu.Item onClick={this.doctorProfile} key="4">
-            <Icon type="user" />
-            Profile
           </Menu.Item>
         </Menu>
       </Sider>

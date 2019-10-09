@@ -159,11 +159,6 @@ class DoctorProfile extends Component {
                   </div>
                   <div>
                     <label>
-                      <b>University:</b> <span>{user._id}</span>
-                    </label>
-                  </div>
-                  <div>
-                    <label>
                       <b>Age:</b> <span>{user.age}</span>
                     </label>
                   </div>

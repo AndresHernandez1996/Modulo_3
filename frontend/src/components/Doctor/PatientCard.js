@@ -52,7 +52,7 @@ class PatientCard extends Component {
     axios
       .post(`http://localhost:3000/doctor/create-prescription`, prescription)
       .then(({ data }) => {
-        console.log('Esta es la prescription', data)
+        // console.log('Esta es la prescription', data)
         this.setState({})
         // this.props.history.push(`/my-prescriptions/${this.state.user._id}`)
       })
@@ -66,12 +66,12 @@ class PatientCard extends Component {
     const key = e.target.name
     prescription[key] = e.target.value
     this.setState({ prescription })
-    console.log(this.state.prescription)
+    // console.log(this.state.prescription)
   }
 
   render() {
     const user = this.state.user.user
-    console.log('Esto es lo del rendeer', user)
+    // console.log('Esto es lo del rendeer', user)
     return (
       <div style={{ display: 'flex', justifyContent: 'space-around', flexFlow: 'wrap' }}>
         {user.map(user => (

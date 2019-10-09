@@ -23,6 +23,7 @@ class RegisterConsult extends Component {
 
   render() {
     const user = this.state
+    console.log("Yo soy el user wey", user.user._id)
     return (
       <div>
         <nav
@@ -67,6 +68,7 @@ class RegisterConsult extends Component {
         <Layout>
           <SiderDoctor history={this.props.history} />
           <div
+            key={user.user._id}
             style={{
               textAlign: 'center',
               width: '100%',
@@ -77,7 +79,9 @@ class RegisterConsult extends Component {
               <img alt="user" src={user.user.imageProfile} width="120vw" />
               <br />
               <br />
-              <h1 style={{ textAlign: 'center' }}>Welcome Andrés Hernández</h1>
+              <h1 style={{ textAlign: 'center' }}>
+                Welcome {user.user.name} {user.user.lastName}{' '}
+              </h1>
               <p>Here you can see the users registered in the app.</p>
               {/* CONTAINER CARDS */}
               <PatientCard history={this.props.history} />
