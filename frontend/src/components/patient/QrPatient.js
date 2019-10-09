@@ -22,7 +22,7 @@ class QrPatient extends Component {
 
   render() {
     const user = this.state
-    console.log('tarigo esta info', user)
+    console.log('tarigo esta info', user.user._id)
     return (
       <div>
         <nav
@@ -86,7 +86,7 @@ class QrPatient extends Component {
               </p>
               {/* CONTAINER CARDS */}
               <div style={{ margin: '10% 0' }}>
-                <QRCode value="http://localhost:3000/auth/qrCodeEmergency" />
+                <QRCode value={`http://localhost:3000/contact/qrCodeEmergency${user.user._id}`} />
               </div>
               {/* <img
                 style={{ margin: '10% 0' }}

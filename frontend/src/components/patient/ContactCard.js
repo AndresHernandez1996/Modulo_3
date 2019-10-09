@@ -19,7 +19,7 @@ class ContactCard extends Component {
         let contactsArr = []
         this.setState({ contacts: data.contact })
         const contacts = this.state.contacts
-        contacts.map(contact => {
+        contacts.forEach(contact => {
           const parent = contact.parent
           if (this.state.user._id === parent[0]) {
             contactsArr.push(contact)

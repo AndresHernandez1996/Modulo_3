@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import { MyContext } from '../../context'
 import { NavLink } from 'react-router-dom'
 import { Layout } from 'antd'
+import axios from 'axios'
 import Footer from '../home/Footer'
-import QRCode from 'qrcode.react'
+import PublicCard from './PublicCard'
 const { Content } = Layout
 
 class PatientEmergency extends Component {
@@ -12,15 +13,29 @@ class PatientEmergency extends Component {
   }
 
   componentDidMount() {
-    if (localStorage.user) {
-      let user = JSON.parse(localStorage.getItem('user'))
-      this.setState({ user })
-    }
-    if (!localStorage.user) return this.props.history.push('/login')
+    let user = JSON.parse(localStorage.getItem('user'))
+    this.setState({ user })
+    axios
+      .get('http://localhost:3000/contact/contacts')
+      .then(({ data }) => {
+        let contactsArr = []
+        this.setState({ contacts: data.contact })
+        const contacts = this.state.contacts
+        contacts.forEach(contact => {
+          const parent = contact.parent
+          if (this.state.user._id === parent[0]) {
+            contactsArr.push(contact)
+            this.setState({ contacts: contactsArr })
+          }
+        })
+      })
+      .catch(error => {
+        console.log(error)
+      })
   }
 
   render() {
-    const user = this.state
+    const user = this.state.user
     console.log('tarigo esta info', user)
     return (
       <div>
@@ -56,22 +71,15 @@ class PatientEmergency extends Component {
               <br />
               <br />
               <h1 style={{ textAlign: 'center' }}>Emergency!</h1>
-              <section style={{width:'85%', textAlign:'center', margin:'7%'}}>
+              <section style={{ width: '85%', textAlign: 'center', margin: '7%' }}>
                 <p>
-                  If you are seeing this qr code, it is most likely that the person{' '}
-                  <b>carrying it is at risk</b>, please call some of their contacts or take it to
-                  the nearest hospital
+                                If you are seeing this QR code it is very likely that <b>{user.name} {user.lastName}</b> is at risk, please
+                  call some of his contacts or take him to the nearest hospital
                 </p>
               </section>
-              {/* CONTAINER CARDS */}
-              <div style={{ margin: '10% 0' }}>
-                <QRCode value="http://localhost:3000/auth/qrCodeEmergency" />
+              <div style={{ margin: '0 20%' }}>
+                <PublicCard />
               </div>
-              {/* <img
-                style={{ margin: '10% 0' }}
-                src="https://res.cloudinary.com/ironhacker/image/upload/v1570065915/Captura_de_Pantalla_2019-10-02_a_la_s_8.24.37_p._m._wyi0dk.png"
-                width="180px"></img> */}
-              {/* CARD UNICA */}
             </Content>
           </div>
         </Layout>
