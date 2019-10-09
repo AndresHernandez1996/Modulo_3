@@ -22,7 +22,7 @@ class QrPatient extends Component {
 
   render() {
     const user = this.state
-    console.log('tarigo esta info', user.user._id)
+    // console.log('tarigo esta info', user.user._id)
     return (
       <div>
         <nav
@@ -86,13 +86,11 @@ class QrPatient extends Component {
               </p>
               {/* CONTAINER CARDS */}
               <div style={{ margin: '10% 0' }}>
-                <QRCode value={`http://localhost:3000/contact/qrCodeEmergency${user.user._id}`} />
+                <QRCode
+                  size="70"
+                  value={`http://localhost:3001/qrCodeEmergency/${user.user._id}`}
+                />
               </div>
-              {/* <img
-                style={{ margin: '10% 0' }}
-                src="https://res.cloudinary.com/ironhacker/image/upload/v1570065915/Captura_de_Pantalla_2019-10-02_a_la_s_8.24.37_p._m._wyi0dk.png"
-                width="180px"></img> */}
-              {/* CARD UNICA */}
             </Content>
           </div>
         </Layout>
