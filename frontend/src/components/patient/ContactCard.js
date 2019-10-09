@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button } from 'antd'
+import { Button, Modal } from 'antd'
 import axios from 'axios'
 
 class ContactCard extends Component {
@@ -8,6 +8,19 @@ class ContactCard extends Component {
       user: []
     },
     contacts: []
+  }
+
+  warning = () => {
+    Modal.warning({
+      title: 'Confirm Action',
+      content: 'Are you sure you want to delete this contact?'
+    })
+  }
+
+  deleteContact = () => {
+    const contacts = this.state.contacts
+    axios.delete(`http://localhost:3000/contact/contacts`)
+    console.log('Soy el delete verch', contacts)
   }
 
   componentDidMount() {
@@ -34,11 +47,12 @@ class ContactCard extends Component {
 
   render() {
     const contacts = this.state.contacts
-    console.log('Soy el user del render!', contacts)
+    const user = this.state.user
     return (
       <div>
         {contacts.map(contact => (
           <div
+            key={contact._id}
             style={{
               display: 'flex',
               justifyContent: 'space-around',
@@ -86,7 +100,14 @@ class ContactCard extends Component {
               }}>
               <img src="/images/contact.svg" width="90px" alt="usuario" />
               <div style={{ magin: ' 15% 0' }}>
+                {/* <NavLink exact to={`/create-contact/${user._id}`}> */}
                 <Button
+                  id={contact._id}
+                  onClick={() => {
+                    axios.delete(`http://localhost:3000/contact/contacts/${contact._id}`)
+                    // console.log('Soy el delete verch', contact._id)
+                    this.props.history.push(`/create-contact/${user._id}`)
+                  }}
                   style={{
                     backgroundColor: '#ed5151',
                     margin: ' 3% 0 3% 0',
@@ -95,6 +116,7 @@ class ContactCard extends Component {
                   }}>
                   Delete contact
                 </Button>
+                {/* </NavLink> */}
               </div>
             </div>
           </div>

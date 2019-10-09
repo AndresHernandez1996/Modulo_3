@@ -57,23 +57,33 @@ class PublicCard extends Component {
               <h5 style={{ fontSize: '13.3px', color: 'red' }}>
                 <b>Name: </b>
               </h5>
-              <h5>{contact.name}</h5>
+              <h5>
+                <b>{contact.name}</b>
+              </h5>
               <h5 style={{ fontSize: '13.3px', color: 'red' }}>
                 <b>Lastname: </b>
               </h5>
-              <h5>{contact.lastName}</h5>
+              <h5>
+                <b>{contact.lastName}</b>
+              </h5>
               <h5 style={{ fontSize: '13.3px', color: 'red' }}>
                 <b> Age:</b>
               </h5>
-              <h5>{contact.age}</h5>
+              <h5>
+                <b>{contact.age}</b>
+              </h5>
               <h5 style={{ fontSize: '13.3px', color: 'red' }}>
                 <b>Family RelationShip: </b>
               </h5>
-              <h5>{contact.familyRelationship}</h5>
+              <h5>
+                <b>{contact.familyRelationship}</b>
+              </h5>
               <h5 style={{ fontSize: '13.3px', color: 'red' }}>
                 <b>Phone Number: </b>
               </h5>
-              <h5>{contact.phoneNumber}</h5>
+              <h5>
+                <b>{contact.phoneNumber}</b>
+              </h5>
               <br />
               <br />
             </div>

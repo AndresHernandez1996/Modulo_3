@@ -89,10 +89,7 @@ class PatientProfile extends Component {
               <h1 style={{ textAlign: 'center' }}>
                 Welcome {user.name} {user.lastName}
               </h1>
-              <p>
-                Manage your information and privacy and security options to make Google more
-                relevant to you.
-              </p>
+              <p>Here you can see your recent medical appointments.</p>
               {/* CONTAINER CARDS */}
               <div
                 style={{
