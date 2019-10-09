@@ -45,19 +45,19 @@ function Content() {
           alignItems: 'center'
         }}>
         <div width="25%">
-          <img alt="h" src="/images/alert.svg" width="80vw" />
+          <img alt="h" src="/images/alert.svg" width="90vw" />
           <p style={{ marginTop: 30 }}>Get help from people around you</p>
         </div>
         <div width="25%">
-          <img alt="h" src="/images/hospital.svg" width="80vw" />
+          <img alt="h" src="/images/hospital.svg" width="90vw" />
           <p style={{ marginTop: 30 }}>Find hospitals near you</p>
         </div>
         <div width="25%">
-          <img alt="h" src="/images/shield.svg" width="80vw" />
+          <img alt="h" src="/images/shield.svg" width="90vw" />
           <p style={{ marginTop: 30 }}>Use the app at all times</p>
         </div>
         <div width="25%">
-          <img alt="h" src="/images/stethoscope.svg" width="80vw" />
+          <img alt="h" src="/images/stethoscope.svg" width="90vw" />
           <p style={{ marginTop: 30 }}>get assistance from specialized dosers</p>
         </div>
       </div>

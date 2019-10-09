@@ -5,6 +5,7 @@ import { Layout } from 'antd'
 import axios from 'axios'
 import Footer from '../home/Footer'
 import PublicCard from './PublicCard'
+import MapPatient from './MapPatient'
 const { Content } = Layout
 
 class PatientEmergency extends Component {
@@ -36,7 +37,7 @@ class PatientEmergency extends Component {
 
   render() {
     const user = this.state.user
-    console.log('tarigo esta info', user)
+    // console.log('tarigo esta info', user)
     return (
       <div>
         <nav
@@ -73,14 +74,20 @@ class PatientEmergency extends Component {
               <h1 style={{ textAlign: 'center' }}>Emergency!</h1>
               <section style={{ width: '85%', textAlign: 'center', margin: '7%' }}>
                 <p>
-                                If you are seeing this QR code it is very likely that <b>{user.name} {user.lastName}</b> is at risk, please
-                  call some of his contacts or take him to the nearest hospital
+                  If you are seeing this QR code it is very likely that{' '}
+                  <b>
+                    {user.name} {user.lastName}
+                  </b>{' '}
+                  is at risk, please call some of his contacts or take him to the nearest hospital
                 </p>
               </section>
               <div style={{ margin: '0 20%' }}>
                 <PublicCard />
               </div>
             </Content>
+          </div>
+          <div>
+            <MapPatient />
           </div>
         </Layout>
         <Footer />

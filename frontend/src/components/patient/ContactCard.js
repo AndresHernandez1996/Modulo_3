@@ -17,11 +17,11 @@ class ContactCard extends Component {
     })
   }
 
-  deleteContact = () => {
-    const contacts = this.state.contacts
-    axios.delete(`http://localhost:3000/contact/contacts`)
-    console.log('Soy el delete verch', contacts)
-  }
+  // deleteContact = () => {
+  //   const contacts = this.state.contacts
+  //   axios.delete(`http://localhost:3000/contact/contacts`)
+  //   console.log('Soy el delete verch', contacts)
+  // }
 
   componentDidMount() {
     let user = JSON.parse(localStorage.getItem('user'))
