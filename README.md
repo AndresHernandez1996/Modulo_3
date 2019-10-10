@@ -41,18 +41,18 @@ registered and contact them to notify you of your status.
 
 #### Patient account:
 
-Email: ale@ale.com
+Email: patient@jolteon.com
 
 Password: 1234
 
 #### Doctor account:
 
-Email: zariel145@gmail.com
+Email: doctor@jolteon.com
 
 Password: 1234
 
 #
 
-Go carefully! 🙆🏻‍ 🏥 👨🏻‍⚕️
+Go carefully! 🙆🏻‍♂️ 🏥 👨🏻‍⚕️
 
-[Go to the app!](https://aqueous-ocean-73744.herokuapp.com/)
+[Catch it!](https://jolteon.netlify.com)
