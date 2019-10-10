@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Modal } from 'antd'
+import { Button} from 'antd'
 import axios from 'axios'
 
 class ContactCard extends Component {
@@ -9,19 +9,6 @@ class ContactCard extends Component {
     },
     contacts: []
   }
-
-  warning = () => {
-    Modal.warning({
-      title: 'Confirm Action',
-      content: 'Are you sure you want to delete this contact?'
-    })
-  }
-
-  // deleteContact = () => {
-  //   const contacts = this.state.contacts
-  //   axios.delete(`http://localhost:3000/contact/contacts`)
-  //   console.log('Soy el delete verch', contacts)
-  // }
 
   componentDidMount() {
     let user = JSON.parse(localStorage.getItem('user'))
