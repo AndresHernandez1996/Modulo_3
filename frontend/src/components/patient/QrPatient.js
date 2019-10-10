@@ -88,7 +88,7 @@ class QrPatient extends Component {
               <div style={{ margin: '10% 0' }}>
                 <QRCode
                   size="70"
-                  value={`https://jolteon.now.sh/qrCodeEmergency/${user.user._id}`}
+                  value={`https://youthful-shirley-60125f.netlify.com/qrCodeEmergency/${user.user._id}`}
                 />
               </div>
             </Content>
