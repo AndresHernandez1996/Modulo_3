@@ -19,7 +19,7 @@ class Login extends Component {
     const key = e.target.name
     user[key] = e.target.value
     this.setState({ user })
-    console.log(this.state.user)
+    // console.log(this.state.user)
   }
 
   onSubmit = e => {

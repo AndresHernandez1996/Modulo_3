@@ -23,7 +23,7 @@ class RegisterConsult extends Component {
 
   render() {
     const user = this.state
-    console.log("Yo soy el user wey", user.user._id)
+    // console.log("Yo soy el user wey", user.user._id)
     return (
       <div>
         <nav

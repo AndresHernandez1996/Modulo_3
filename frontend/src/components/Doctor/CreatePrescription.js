@@ -22,7 +22,7 @@ class CreatePrescription extends Component {
         prescription
       )
       .then(({ data }) => {
-        console.log('Esta es la prescription', data)
+        // console.log('Esta es la prescription', data)
         this.setState({})
         this.props.history.push(`/my-prescriptions/${this.state.user._id}`)
       })
@@ -44,7 +44,7 @@ class CreatePrescription extends Component {
     const key = e.target.name
     prescription[key] = e.target.value
     this.setState({ prescription })
-    console.log(this.state.prescription)
+    // console.log(this.state.prescription)
   }
 
   render() {

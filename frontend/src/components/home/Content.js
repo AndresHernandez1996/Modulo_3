@@ -30,9 +30,6 @@ function Content() {
           />
           <h3>3</h3>
         </div>
-        <div>
-          <h3>4</h3>
-        </div>
       </Carousel>
       <div
         style={{
@@ -58,7 +55,7 @@ function Content() {
         </div>
         <div width="25%">
           <img alt="h" src="/images/stethoscope.svg" width="90vw" />
-          <p style={{ marginTop: 30 }}>get assistance from specialized dosers</p>
+          <p style={{ marginTop: 30 }}>Get assistance from specialized doctors</p>
         </div>
       </div>
       <Footer />

@@ -33,7 +33,7 @@ class PublicCard extends Component {
 
   render() {
     const contacts = this.state.contacts
-    console.log('Soy el user del render!', contacts)
+    // console.log('Soy el user del render!', contacts)
     return (
       <div>
         {contacts.map(contact => (

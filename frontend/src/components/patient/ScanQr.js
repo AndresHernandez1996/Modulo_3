@@ -17,9 +17,7 @@ class ScanQr extends Component {
       this.setState({
         result: data
       })
-      this.props.history.push(
-        `https://youthful-shirley-60125f.netlify.com/qrCodeEmergency/${this.state.user._id}`
-      )
+      this.props.history.push(`/qrCodeEmergency/${this.state.user._id}`)
     }
     // console.log('Soy el user chido', this.state.user._id)
   }
@@ -90,18 +88,14 @@ class ScanQr extends Component {
               justifyContent: 'center'
             }}>
             <Content style={{ backgroundColor: 'white', padding: '5% 0 0 0' }}>
-              <img alt="QRcode" src="/images/alert.svg" width="120vw" />
+              <img alt="QRcode" src="/images/eye.svg" width="120vw" />
               <br />
               <br />
               <h1 style={{ textAlign: 'center' }}>
-                Attention! {user.user.name} {user.user.lastName}
+                {user.user.name} {user.user.lastName}, test your QR Code!
               </h1>
-              <p>
-                This code can be shared with your contacts, this shows your emergency contacts and
-                nearby hospitals
-              </p>
               {/* CONTAINER CARDS */}
-              <div style={{ margin: '10% 0' }}>
+              <div style={{ margin: '5% 0' }}>
                 <QrReader
                   delay={300}
                   onError={this.handleError}

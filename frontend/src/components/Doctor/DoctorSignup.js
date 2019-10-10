@@ -28,7 +28,7 @@ class DoctorSignup extends Component {
     axios
       .post('https://aqueous-scrubland-35857.herokuapp.com/auth/signup', user)
       .then(({ data }) => {
-        console.log(data)
+        // console.log(data)
         this.setState({
           user: {
             name: '',
@@ -55,7 +55,7 @@ class DoctorSignup extends Component {
     const key = e.target.name
     user[key] = e.target.value
     this.setState({ user })
-    console.log(this.state.user)
+    // console.log(this.state.user)
   }
 
   handleSelect = value => {
@@ -72,7 +72,7 @@ class DoctorSignup extends Component {
 
   render() {
     const { user } = this.state
-    console.log(user)
+    // console.log(user)
     return (
       <div>
         <nav

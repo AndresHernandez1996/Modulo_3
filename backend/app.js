@@ -25,7 +25,7 @@ app.use(
     credentials: true,
     origin: [
       process.env.FRONTENDPOINT,
-      'https://youthful-shirley-60125f.netlify.com',
+      'https://jolteon.netlify.com',
       'https://aqueous-scrubland-35857.herokuapp.com'
     ]
   })

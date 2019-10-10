@@ -6,7 +6,7 @@ import '../../index.css'
 function HomeCard() {
   return (
     <div style={{ width: 500 }}>
-      <Card style={{ border: 'none' }}>
+      <Card style={{ border: 'none', backgroundColor: 'none', textAlign: 'start' }}>
         <h1 style={{ fontSize: '8vw' }}>Welcome to </h1>
         <h1 style={{ fontSize: '8vw' }}> Jolteon!</h1>
         <hr />

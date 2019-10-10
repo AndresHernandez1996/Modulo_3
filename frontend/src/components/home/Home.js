@@ -30,7 +30,7 @@ function Home() {
           <ul className="navbar-nav mr-auto">
             <li className="nav-item active">
               <a style={{ color: 'white' }} className="nav-link" href="/">
-              <span className="sr-only">(current)</span>
+               <span className="sr-only">(current)</span>
               </a>
             </li>
           </ul>
@@ -52,6 +52,7 @@ function Home() {
           justifyContent: 'space-around',
           margin: '5% 0 6% 0',
           height: 520,
+          alignItems: 'center'
         }}>
         <div>
           {/*Aqui va una tarjeta*/}

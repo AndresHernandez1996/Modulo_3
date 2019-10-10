@@ -6,6 +6,7 @@ import axios from 'axios'
 import Footer from '../home/Footer'
 import PublicCard from './PublicCard'
 import MapPatient from './MapPatient'
+import '../../index.css'
 const { Content } = Layout
 
 class PatientEmergency extends Component {
@@ -72,10 +73,10 @@ class PatientEmergency extends Component {
               <br />
               <br />
               <h1 style={{ textAlign: 'center' }}>Emergency!</h1>
-              <section style={{ width: '85%', textAlign: 'center', margin: '7%' }}>
+              <section style={{ width: '85%', textAlign: 'center', margin: '7%', fontSize:'25px', color:'red' }}>
                 <p>
                   If you are seeing this QR code it is very likely that{' '}
-                  <b>
+                  <b className="name">
                     {user.name} {user.lastName}
                   </b>{' '}
                   is at risk, please call some of his contacts or take him to the nearest hospital
@@ -86,9 +87,7 @@ class PatientEmergency extends Component {
               </div>
             </Content>
           </div>
-          <div>
             <MapPatient />
-          </div>
         </Layout>
         <Footer />
       </div>

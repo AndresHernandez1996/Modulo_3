@@ -29,7 +29,7 @@ class CreateContact extends Component {
     CONTACT_SERVICE.createContact(contact)
       // .post(`http://localhost:3000/contact/create-contact`, contact)
       .then(({ data }) => {
-        console.log('Esta es la data del contact', data)
+        // console.log('Esta es la data del contact', data)
         this.props.history.push(`/contacts/${this.state.user._id}`)
       })
       .catch(error => {
@@ -50,7 +50,7 @@ class CreateContact extends Component {
     const key = e.target.name
     contact[key] = e.target.value
     this.setState({ contact })
-    console.log(this.state.contact)
+    // console.log(this.state.contact)
   }
 
   handleSelect = value => {

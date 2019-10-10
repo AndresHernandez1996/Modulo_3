@@ -9,7 +9,7 @@ class MyProvider extends Component {
   }
 
   logUser = loggedUser => {
-    console.log('este es el usuario de login a context', loggedUser)
+    // console.log('este es el usuario de login a context', loggedUser)
     this.setState({ loggedUser })
   }
 
