@@ -329,11 +329,6 @@ export default class MapPatient extends Component {
   }
 
   render() {
-    return (
-      <div
-        style={{ margin: '10% 5% 0 5%', width: '90%', height: '90vh' }}
-        ref={e => (this.map = e)}
-      />
-    )
+    return <div style={{ width: '100%', height: '90vh' }} ref={e => (this.map = e)} />
   }
 }

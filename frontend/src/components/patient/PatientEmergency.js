@@ -60,7 +60,6 @@ class PatientEmergency extends Component {
 
         {/* TERMINA SIDE NAV */}
 
-        <Layout>
           <div
             style={{
               textAlign: 'center',
@@ -94,8 +93,7 @@ class PatientEmergency extends Component {
               </div>
             </Content>
           </div>
-        </Layout>
-        <MapPatient />
+          <MapPatient />
         <Footer />
       </div>
     )
