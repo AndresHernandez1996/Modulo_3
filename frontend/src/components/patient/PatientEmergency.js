@@ -73,7 +73,14 @@ class PatientEmergency extends Component {
               <br />
               <br />
               <h1 style={{ textAlign: 'center' }}>Emergency!</h1>
-              <section style={{ width: '85%', textAlign: 'center', margin: '7%', fontSize:'25px', color:'red' }}>
+              <section
+                style={{
+                  width: '85%',
+                  textAlign: 'center',
+                  margin: '7%',
+                  fontSize: '25px',
+                  color: 'red'
+                }}>
                 <p>
                   If you are seeing this QR code it is very likely that{' '}
                   <b className="name">
@@ -87,8 +94,8 @@ class PatientEmergency extends Component {
               </div>
             </Content>
           </div>
-            <MapPatient />
         </Layout>
+        <MapPatient />
         <Footer />
       </div>
     )

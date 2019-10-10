@@ -83,7 +83,8 @@ class Login extends Component {
             height: 520,
             display: 'flex',
             justifyContent: 'space-around',
-            alignItems: 'center'
+            alignItems: 'center',
+            textAlign:'start'
           }}>
           <div style={{ width: 500 }}>
             <Card style={{ border: 'none', fontSize: '5px', width: '40vw' }}>
