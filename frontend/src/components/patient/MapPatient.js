@@ -37,7 +37,7 @@ export default class MapPatient extends Component {
         placeholder: 'Look for a nearby hospital',
         mapboxgl: mapboxgl
       }),
-      'bottom-right'
+      'top-left'
     )
 
     map.addControl(new mapboxgl.NavigationControl())
@@ -46,7 +46,7 @@ export default class MapPatient extends Component {
       new MapboxDirections({
         accessToken: mapboxgl.accessToken
       }),
-      'top-left'
+      'bottom-left'
     )
 
     // console.log('Soy lo que quieres meter al map', this.state.hospital)
@@ -329,6 +329,6 @@ export default class MapPatient extends Component {
   }
 
   render() {
-    return <div style={{ width: '100%', height: '90vh' }} ref={e => (this.map = e)} />
+    return <div style={{ margin: '7% 0 0  10%', width: '80%', height: '100vh' }} ref={e => (this.map = e)} />
   }
 }
